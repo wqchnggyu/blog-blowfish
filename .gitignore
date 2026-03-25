@@ -1,0 +1,16 @@
+# Hugo 构建产物
+public/
+public_new/
+public_test/
+resources/
+.hugo_build.lock
+
+# 临时文件
+snap_out.txt
+
+# 主题（通过 Hugo Module 管理，不需要提交到仓库）
+# themes/
+
+# Node / 系统文件
+.DS_Store
+Thumbs.db

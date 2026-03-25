@@ -1,0 +1,23 @@
+/* 自定义字体：霞鹜新晰黑 Plus */
+@font-face {
+  font-family: 'LXGWNeoZhiSongPlus';
+  src: url('../LXGWNeoZhiSongPlus.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 全局替换默认字体 */
+html, body {
+  font-family: 'LXGWNeoZhiSongPlus', ui-serif, Georgia, 'Times New Roman', serif !important;
+}
+
+/* 覆盖 Blowfish 主题的 prose 字体 */
+.prose, .prose * {
+  font-family: 'LXGWNeoZhiSongPlus', ui-serif, Georgia, 'Times New Roman', serif;
+}
+
+/* 代码块保持等宽字体 */
+code, pre, kbd, samp {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+}
