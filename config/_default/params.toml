@@ -67,7 +67,7 @@ disableImageOptimization = false
   showTableOfContents = true
   showTaxonomies = true
   showWordCount = true
-  showComments = true          # 开启 Giscus 评论系统
+  showComments = true          # 开启 Waline 评论系统
 
 [list]
   showHero = true
@@ -99,3 +99,11 @@ disableImageOptimization = false
   showTableOfContents = true
   groupByYear = false
   cardView = false
+[firebase]
+  # apiKey = "XXXXXX"
+  # authDomain = "XXXXXX"
+  # projectId = "XXXXXX"
+  # storageBucket = "XXXXXX"
+  # messagingSenderId = "XXXXXX"
+  # appId = "XXXXXX"
+  # measurementId = "XXXXXX"

@@ -1,76 +1,39 @@
-{{/* Giscus 评论系统
-     初始主题在客户端脚本中动态注入，确保跟随页面当前深浅色状态 */}}
-<div id="giscus-container"></div>
+{{/* Waline 评论系统
+     自动跟随 Blowfish 深浅色模式切换 */}}
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css" />
+<div id="waline"></div>
 
-<script>
-(function () {
-  /* ── 工具函数 ── */
+<script type="module">
+  import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+
   function isDark() {
     return document.documentElement.classList.contains('dark');
   }
-  function getGiscusTheme() {
+
+  function getWalineTheme() {
     return isDark() ? 'dark' : 'light';
   }
-  function sendTheme(theme) {
-    var iframe = document.querySelector('iframe.giscus-frame');
-    if (!iframe) return;
-    iframe.contentWindow.postMessage(
-      { giscus: { setConfig: { theme: theme } } },
-      'https://giscus.app'
-    );
-  }
 
-  /* ── 动态注入 giscus script，主题值在此刻确定 ── */
-  function injectGiscus() {
-    var s = document.createElement('script');
-    s.src = 'https://giscus.app/client.js';
-    s.setAttribute('data-repo',            'wqchnggyu/Comments');
-    s.setAttribute('data-repo-id',         'R_kgDORvYn3w');
-    s.setAttribute('data-category',        'General');
-    s.setAttribute('data-category-id',     'DIC_kwDORvYn384C5KdW');
-    s.setAttribute('data-mapping',         'pathname');
-    s.setAttribute('data-strict',          '0');
-    s.setAttribute('data-reactions-enabled', '1');
-    s.setAttribute('data-emit-metadata',   '0');
-    s.setAttribute('data-input-position',  'bottom');
-    s.setAttribute('data-theme',           getGiscusTheme()); // 关键：此时 dark class 已确定
-    s.setAttribute('data-lang',            'zh-CN');
-    s.setAttribute('crossorigin',          'anonymous');
-    s.async = true;
-    document.getElementById('giscus-container').appendChild(s);
-  }
+  let walineInstance = null;
 
-  /* ── 切换主题时同步给 iframe ── */
-  function bindSwitcher(id) {
-    var btn = document.getElementById(id);
-    if (!btn) return;
-    btn.addEventListener('click', function () {
-      // Blowfish 在同一个 tick 内 toggle class，下一帧已更新
-      requestAnimationFrame(function () { sendTheme(getGiscusTheme()); });
+  function initWaline() {
+    walineInstance = init({
+      el: '#waline',
+      serverURL: 'https://blog-comments-tau-red.vercel.app/',
+      lang: 'zh-CN',
+      dark: 'html.dark',   // 跟随 Blowfish 的 dark class
+      emoji: [
+        'https://unpkg.com/@waline/emojis@1.2.0/weibo',
+        'https://unpkg.com/@waline/emojis@1.2.0/bilibili',
+      ],
+      pageview: true,
+      comment: true,
     });
   }
 
-  /* ── 系统配色变化兜底（autoSwitchAppearance = true）── */
-  if (window.matchMedia) {
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () {
-      requestAnimationFrame(function () { sendTheme(getGiscusTheme()); });
-    });
-  }
-
-  /* ── 入口 ── */
-  // appearance.js 在 <head> 里同步执行，DOMContentLoaded 触发前 dark class 已写好
-  // 因此在 DOMContentLoaded 后注入 giscus，data-theme 必然与页面一致
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function () {
-      injectGiscus();
-      bindSwitcher('appearance-switcher');
-      bindSwitcher('appearance-switcher-mobile');
-    });
+    document.addEventListener('DOMContentLoaded', initWaline);
   } else {
-    // 脚本在 DOMContentLoaded 之后执行（不太可能，但兜底）
-    injectGiscus();
-    bindSwitcher('appearance-switcher');
-    bindSwitcher('appearance-switcher-mobile');
+    initWaline();
   }
-})();
 </script>
