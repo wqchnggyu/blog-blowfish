@@ -52,7 +52,7 @@ disableImageOptimization = false
 
 [article]
   showDate = true
-  showViews = false
+  showViews = true
   showLikes = false
   showAuthor = true
   showHero = true
@@ -80,6 +80,7 @@ disableImageOptimization = false
   showCards = true
   groupByYear = true
   cardView = false
+  showViews = true
 
 [sitemap]
   excludedKinds = ["taxonomy", "term"]

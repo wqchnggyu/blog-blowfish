@@ -1,0 +1,10 @@
+{{/* 覆盖主题的 views.html，使用 Waline pageview 替代 Firebase
+     Waline 会查找 .waline-pageview-count 并根据 data-path 填入访问量 */}}
+<span>
+  <span
+    class="waline-pageview-count"
+    data-path="{{ .RelPermalink }}"
+    title="views"
+  >-</span>
+  <span class="inline-block align-text-bottom">{{ partial "icon.html" "eye" }}</span>
+</span>
