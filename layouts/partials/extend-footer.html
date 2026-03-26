@@ -1,0 +1,24 @@
+{{/* extend-footer.html
+     1. 全站每页执行 Waline pageview 统计（填充 .waline-pageview-count span）
+     2. 在 footer 显示"本站共有 N 次访问" */}}
+
+{{/* 总访问量显示区块：追加到 footer 的 theme attribution 行下方 */}}
+<div class="mt-2 text-center text-xs text-neutral-400 dark:text-neutral-500">
+  本站共有
+  <span
+    class="waline-pageview-count"
+    data-path="/"
+    title="总访问量"
+  >-</span>
+  次访问
+</div>
+
+{{/* 轻量 pageview 模块：统计当前页 + 填充所有 .waline-pageview-count */}}
+<script type="module">
+  import { pageviewCount } from 'https://unpkg.com/@waline/client@v3/dist/pageview.js';
+
+  pageviewCount({
+    serverURL: 'https://blog-comments-tau-red.vercel.app/',
+    path: window.location.pathname,
+  });
+</script>
