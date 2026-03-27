@@ -4,7 +4,7 @@
 
 - **主题**：blowfish，中文语言（zh-cn）
 - **博主名**：Wqchnggyu，**标题**：Wqchnggyu's blogs
-- **baseURL**：https://wqchnggyu.github.io/（GitHub Pages 部署地址）
+- **baseURL**：https://blogs.wqch.net/（自定义域名，static/CNAME 已配置）
 - **背景图**：assets/background.webp（165KB，background_hu_53eef77c6a909fb9）
 - **头像**：assets/avatar.jpg
 - **自定义字体**：assets/css/custom.css 引用 static/LXGWNeoZhiSongPlus.ttf（霞鹜新晰黑 Plus），设为全局默认字体
