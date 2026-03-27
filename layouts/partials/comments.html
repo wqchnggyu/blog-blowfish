@@ -1,6 +1,12 @@
 {{/* Waline 评论系统
      按官方文档 CDN 方式部署，自动跟随 Blowfish 深浅色模式 */}}
 <link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css" />
+<style>
+  :root {
+    --waline-theme-color: #B0C4DE;
+    --waline-active-color: #8aaac8;
+  }
+</style>
 <div id="waline"></div>
 
 <script type="module">
