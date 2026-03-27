@@ -1,25 +1,12 @@
 {{/* extend-footer.html
      全站每页执行 Waline pageview 统计（填充 .waline-pageview-count span）*/}}
 
-{{/* 轻量 pageview 模块：统计当前页 + 填充所有 .waline-pageview-count（v1 服务端）*/}}
-<script>
-  (function () {
-    function initPageview() {
-      var script = document.createElement('script');
-      script.src = 'https://unpkg.com/@waline/client@v1/dist/Waline.min.js';
-      script.onload = function () {
-        new Waline({
-          serverURL: 'https://comment-waline.wqch.net/',
-          path: window.location.pathname,
-          pageview: true,
-        });
-      };
-      document.head.appendChild(script);
-    }
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initPageview);
-    } else {
-      initPageview();
-    }
-  })();
+{{/* 轻量 pageview 模块：统计当前页 + 填充所有 .waline-pageview-count */}}
+<script type="module">
+  import { pageviewCount } from 'https://unpkg.com/@waline/client@v3/dist/pageview.js';
+
+  pageviewCount({
+    serverURL: 'http://comment-waline.wqch.net/',
+    path: window.location.pathname,
+  });
 </script>

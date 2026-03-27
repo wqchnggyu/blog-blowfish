@@ -1,34 +1,39 @@
-{{/* Waline 评论系统（v1 客户端，匹配 v1 服务端）
+{{/* Waline 评论系统
      自动跟随 Blowfish 深浅色模式切换 */}}
-<link rel="stylesheet" href="https://unpkg.com/@waline/client@v1/dist/waline.css" />
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css" />
 <div id="waline"></div>
 
-<script>
-  (function () {
-    function loadWaline() {
-      var script = document.createElement('script');
-      script.src = 'https://unpkg.com/@waline/client@v1/dist/Waline.min.js';
-      script.onload = function () {
-        new Waline({
-          el: '#waline',
-          serverURL: 'https://comment-waline.wqch.net/',
-          lang: 'zh-CN',
-          login: 'force',
-          dark: 'html.dark',
-          emoji: [
-            'https://unpkg.com/@waline/emojis@1.2.0/weibo',
-            'https://unpkg.com/@waline/emojis@1.2.0/bilibili',
-          ],
-          comment: true,
-        });
-      };
-      document.head.appendChild(script);
-    }
+<script type="module">
+  import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', loadWaline);
-    } else {
-      loadWaline();
-    }
-  })();
+  function isDark() {
+    return document.documentElement.classList.contains('dark');
+  }
+
+  function getWalineTheme() {
+    return isDark() ? 'dark' : 'light';
+  }
+
+  let walineInstance = null;
+
+  function initWaline() {
+    walineInstance = init({
+      el: '#waline',
+      serverURL: 'http://comment-waline.wqch.net/',
+      lang: 'zh-CN',
+      login: 'force',      // 强制登录，防止伪造身份评论
+      dark: 'html.dark',   // 跟随 Blowfish 的 dark class
+      emoji: [
+        'https://unpkg.com/@waline/emojis@1.2.0/weibo',
+        'https://unpkg.com/@waline/emojis@1.2.0/bilibili',
+      ],
+      comment: true,
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initWaline);
+  } else {
+    initWaline();
+  }
 </script>
