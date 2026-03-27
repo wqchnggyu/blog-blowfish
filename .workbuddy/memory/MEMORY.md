@@ -12,7 +12,7 @@
 - **社交图标**：assets/icons/bilibili.svg（Simple Icons 风格，主题无内置需自定义）
 - **ICP备案预留**：params.toml 的 icp 字段；background.html 底部显示
 - **unsafe HTML 渲染**：hugo.toml 中已开启 markup.goldmark.renderer.unsafe = true
-- **评论系统**：Waline（serverURL: http://comment-waline.wqch.net/），服务端 v1.39.3，前端使用 @waline/client@v1 匹配，通过 layouts/partials/comments.html 集成，dark: 'html.dark' 自动跟随深浅色，含微博/bilibili 表情包，login: 'force' 强制登录，params.toml 开启 showComments = true
+- **评论系统**：Waline（serverURL: http://comment-waline.wqch.net/），服务端 v1.39.3，前端使用 @waline/client@v3，通过 layouts/partials/comments.html 集成，dark: 'html.dark' 自动跟随深浅色，含微博/bilibili 表情包，login: 'force' 强制登录，comment: true，pageview: true，params.toml 开启 showComments = true
 - **访问量统计**：Waline pageview，通过 layouts/partials/extend-footer.html 全站加载（每页都执行），article.showViews = true + 覆盖 layouts/partials/meta/views.html 用 waline-pageview-count class；footer 总访问量显示已移除
 - **GitHub Pages 部署**：.github/workflows/hugo.yaml（触发分支 main，Hugo v0.157.0，baseURL 由 Actions 动态注入）
 - **主题管理方式**：git submodule，指向官方 `https://github.com/nunocoracao/blowfish.git`（非 fork），checkout 时需 `submodules: true`

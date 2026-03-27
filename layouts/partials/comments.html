@@ -1,39 +1,22 @@
 {{/* Waline 评论系统
-     自动跟随 Blowfish 深浅色模式切换 */}}
+     按官方文档 CDN 方式部署，自动跟随 Blowfish 深浅色模式 */}}
 <link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css" />
 <div id="waline"></div>
 
 <script type="module">
   import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
 
-  function isDark() {
-    return document.documentElement.classList.contains('dark');
-  }
-
-  function getWalineTheme() {
-    return isDark() ? 'dark' : 'light';
-  }
-
-  let walineInstance = null;
-
-  function initWaline() {
-    walineInstance = init({
-      el: '#waline',
-      serverURL: 'http://comment-waline.wqch.net/',
-      lang: 'zh-CN',
-      login: 'force',      // 强制登录，防止伪造身份评论
-      dark: 'html.dark',   // 跟随 Blowfish 的 dark class
-      emoji: [
-        'https://unpkg.com/@waline/emojis@1.2.0/weibo',
-        'https://unpkg.com/@waline/emojis@1.2.0/bilibili',
-      ],
-      comment: true,
-    });
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initWaline);
-  } else {
-    initWaline();
-  }
+  init({
+    el: '#waline',
+    serverURL: 'http://comment-waline.wqch.net/',
+    lang: 'zh-CN',
+    login: 'force',
+    dark: 'html.dark',
+    emoji: [
+      'https://unpkg.com/@waline/emojis@1.2.0/weibo',
+      'https://unpkg.com/@waline/emojis@1.2.0/bilibili',
+    ],
+    comment: true,
+    pageview: true,
+  });
 </script>
