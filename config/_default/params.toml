@@ -108,3 +108,8 @@ disableImageOptimization = false
   # messagingSenderId = "XXXXXX"
   # appId = "XXXXXX"
   # measurementId = "XXXXXX"
+
+[umamiAnalytics]
+  websiteid = "888b13d2-a805-4d65-ad3f-bf9c1fca67ab"
+  domain = "umami.wqch.net"
+  scriptName = "script.js"
