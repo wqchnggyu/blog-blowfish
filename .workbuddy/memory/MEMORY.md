@@ -2,7 +2,7 @@
 
 ## Hugo Blowfish 博客配置（newSite 项目）
 
-- **主题**：blowfish，中文语言（zh-cn）
+- **主题**：blowfish，中文语言（zh-cn），defaultAppearance = "dark"（强制深色，autoSwitchAppearance = false 不跟随系统）
 - **博主名**：Wqchnggyu，**标题**：Wqchnggyu's blogs
 - **baseURL**：https://blogs.wqch.net/（自定义域名，static/CNAME 已配置）
 - **背景图**：assets/background.webp（165KB，background_hu_53eef77c6a909fb9）
