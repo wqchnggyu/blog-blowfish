@@ -110,6 +110,6 @@ disableImageOptimization = false
   # measurementId = "XXXXXX"
 
 [umamiAnalytics]
-  websiteid = "888b13d2-a805-4d65-ad3f-bf9c1fca67ab"
+  websiteid = "e30a6109-4267-499c-b243-34d79e7fd0a1"
   domain = "umami.wqch.net"
   scriptName = "script.js"
